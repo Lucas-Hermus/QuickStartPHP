@@ -1,0 +1,15 @@
+RewriteEngine On
+RewriteBase /
+
+# Redirect trailing slashes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ $1 [R=301,L]
+
+# Rewrite non-existent files/directories to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ /index.php?uri=$1 [QSA,L]
+
+#global declaration of helper functions
+php_value auto_prepend_file "./Core/Helpers.php"
