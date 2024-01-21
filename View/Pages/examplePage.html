@@ -4,7 +4,7 @@
 
 <head>
     <title>Example</title>
-    <link rel="stylesheet" href="../Style/example.css">
+    <link rel="stylesheet" href="/Styles/example.css">
 </head>
 
 <body>
@@ -17,5 +17,14 @@
     </div>
 
 </body>
-
 </html>
+
+<script>
+document.addEventListener("DOMContentLoaded", async function() {
+    console.log(await test());
+});
+
+async function test() {
+    return await sendRequest(url('/api/test'), 'POST', {}, {"here" : "2"});
+}
+</script>
