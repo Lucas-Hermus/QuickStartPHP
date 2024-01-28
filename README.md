@@ -40,13 +40,13 @@ $router->addRoute('/example', 'App\Controller\ExampleController@index', "POST");
 // The index function in the following example will be called when a POST request is 
 // send to the route: "/api/example"
 $router->group('/api', function ($router) {
-    $router->addRoute('/example', 'App\Controller\ExampleController@index');
+    $router->addRoute('/example', 'App\Controller\ExampleController@index', "POST");
 });
 
 // Groups may be nested as many times as nessesary
 $router->group('/api', function ($router) {
   $router->group('/example', function ($router) {
-    $router->addRoute('/route', 'App\Controller\ExampleController@index');
+    $router->addRoute('/route', 'App\Controller\ExampleController@index', "POST");
   });
 });
 ```
