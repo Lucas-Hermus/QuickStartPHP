@@ -1,0 +1,11 @@
+<?php
+
+namespace App\src\Controller;
+
+class {controllerName}Controller
+{
+    public function index()
+    {
+        view("Pages/index.html");
+    }
+}

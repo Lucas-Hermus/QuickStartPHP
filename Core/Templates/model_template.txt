@@ -1,0 +1,10 @@
+<?php
+
+namespace App\src\Model;
+
+use App\Core\Database\Model;
+
+class {className} extends Model
+{
+    public $table = "{table}";
+}

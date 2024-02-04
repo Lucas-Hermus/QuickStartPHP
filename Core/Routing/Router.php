@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Core;
+namespace App\Core\Routing;
 
 class Router
 {
     private $routes = [];
     private $currentGroup = '';
     
-    public function group($prefix, $callback)
-    {
+    public function group($prefix, $callback){
         $previousGroup = $this->currentGroup;
         $this->currentGroup .= $prefix;
 
@@ -17,8 +16,27 @@ class Router
         $this->currentGroup = $previousGroup;
     }
 
-    public function addRoute($uri, $handler, $method = 'GET')
-    {
+    public function get($uri, $handler){
+        $this->addRoute($uri, $handler, "GET");
+    }
+
+    public function post($uri, $handler){
+        $this->addRoute($uri, $handler, "POST");
+    }
+
+    public function put($uri, $handler){
+        $this->addRoute($uri, $handler, "PUT");
+    }
+
+    public function patch($uri, $handler){
+        $this->addRoute($uri, $handler, "PATCH");
+    }
+
+    public function delete($uri, $handler){
+        $this->addRoute($uri, $handler, "DELETE");
+    }
+
+    private function addRoute($uri, $handler, $method = 'GET'){
         $uri = $this->currentGroup . $uri;
         $this->routes[] = [
             'uri' => $uri,
@@ -27,8 +45,7 @@ class Router
         ];
     }
 
-    public function handleRequest($request, $method)
-    {
+    public function handleRequest($request, $method){
         foreach ($this->routes as $route) {
             $variables = $this->getVariables($route['uri'], $request);
             
@@ -52,7 +69,8 @@ class Router
                         $controller->$method();
                     } else {
                         http_response_code(404);
-                        return view("View/404.html");
+                        view("Pages/404.html");
+                        return;
                     }
                 }
 
@@ -62,7 +80,7 @@ class Router
 
         // If no matching route is found
         http_response_code(404);
-        return view("View/404.html");
+        return view("Pages/404.html");
     }
 
     private function getVariables($pattern, $url) {
@@ -83,4 +101,3 @@ class Router
         return $variables;
     }
 }
-?>

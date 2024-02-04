@@ -1,6 +1,7 @@
 <?php
 
-function path($relativePath){
+function path($relativePath): string
+{
     return __DIR__ . "/../" . $relativePath;
 }
 
@@ -11,36 +12,14 @@ function jsonResponse($data, $httpStatus = 200) {
     die();
 }
 
-function view($pathToFile){
-    echo '<script src="/View/helpers.js"></script>';
-    require path($pathToFile);
+function view($pathToFile, $data = array()){
+    echo '<script src="/Public/Scripts/helpers.js"></script>';
+    echo '<script>var _DATA = ' . json_encode($data) . ';</script>';
+    require path("Public/" . $pathToFile);
 }
-
-function test($pattern, $url) {
-    // Extract variables from the pattern
-    preg_match_all('/\{([^\/]+)\}/', $pattern, $matches);
-    
-    // Remove variables from the pattern
-    $patternWithoutVariables = preg_replace('/\/\{[^\/]+\}/', '', $pattern);
-    
-    // Extract the same number of segments from the end of the URL
-    $urlSegments = explode('/', rtrim($url, '/'));
-    $variables = array_slice($urlSegments, -count($matches[1]));
-    
-    // Remove segments from the right side of the URL for each variable
-    $urlWithoutVariables = implode('/', array_slice($urlSegments, 0, -count($matches[1])));
-    
-    // Return the result as an associative array
-    return [
-        'pattern_without_variables' => $patternWithoutVariables,
-        'variables' => $variables,
-        'url_without_variables' => $urlWithoutVariables,
-    ];
-}
-
 
 function dd($data) {
-    require path("Core/Assets/ddStyling.html");
+    require path("Core/Packages/Highlight.js/index.html");
 
     echo '<pre><code class="language-php">';
     echo nl2br(htmlspecialchars(var_export($data, true)));
@@ -50,10 +29,19 @@ function dd($data) {
 }
 
 function dump($data){
-    require path("Core/Assets/ddStyling.html");
+    require path("Core/Packages/Highlight.js/index.html");
 
     echo '<pre><code class="language-php">';
     echo nl2br(htmlspecialchars(var_export($data, true)));
     echo '</code></pre>';
 }
-?>
+
+function is_assoc($array) {
+    if (!is_array($array)) {
+        return false;
+    }
+
+    $keys = array_keys($array);
+
+    return count($keys) > 0 && array_keys($keys) !== $keys;
+}

@@ -12,4 +12,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)$ /index.php?uri=$1 [QSA,L]
 
 #global declaration of helper functions
-php_value auto_prepend_file "./Core/Helpers.php"
+php_value auto_prepend_file "./Core/helpers.php"
