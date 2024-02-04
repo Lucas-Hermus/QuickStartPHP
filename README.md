@@ -258,7 +258,7 @@ class ExampleController
 	}  
 	public function users(){
 		// you can also return a view with data
-		// this will result in you having a superglobal havascript variable: $_DATA
+		// this will result in you having a superglobal javascript variable: $_DATA
 		// this variable is set to whatever you pass into the view function's second 
 		// argument
 		$users = Users::get();
@@ -268,7 +268,7 @@ class ExampleController
 	public function getProducts(){
 		//you can also return a json response for when you need a api route
 		$users = Users::get();
-		jsonResponse($users);
+		jsonResponse($users, 200);
 	}
 }
 ```
