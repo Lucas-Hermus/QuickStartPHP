@@ -33,13 +33,13 @@ Route::post('/example', 'App\Controller\ExampleController@index');
 // Groups can be created to simplify adding multiple routes under the same sub route
 // The index function in the following example will be called when a POST request is 
 // send to the route: "/api/example"
-Route::group('/api', function ($router) {
+Route::group('/api', function () {
     Route::post('/example', 'App\Controller\ExampleController@index');
 });
 
 // Groups may be nested as many times as nessesary
-Route::group('/api', function ($router) {
-  Route::group('/example', function ($router) {
+Route::group('/api', function () {
+  Route::group('/example', function () {
     Route::post('/route', 'App\Controller\ExampleController@index');
   });
 });
