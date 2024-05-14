@@ -2,6 +2,8 @@
 ---
 QuickStartPHP is a lightweight and flexible PHP framework designed with the sole purpose of providing a learning experience. Created out of a passion for understanding the intricacies of web development frameworks, this project serves as my personal journey to dive deep into the underlying principles and mechanisms that power modern web applications.
 
+Disclaimer: You might notice that the syntax choosen is very simmilar to Laravel syntax. This project has been heavily inspired by the way that Laravel handles sertain actions and I don't claim to have made someting completely unique.
+
 # How to use
 ---
 ## Installation
